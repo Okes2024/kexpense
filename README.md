@@ -1,66 +1,150 @@
-**Employee Performance Forecasting Using KPIs**
+# kexpense - Mobile App
 
-This project demonstrates how to forecast employee performance using key performance indicators (KPIs) through machine learning models. It includes both a regression model using Random Forest and a time-series model using LSTM for individual forecasting over time.
-🔍 Features
+A fully offline expense calculator mobile app built with Expo and React Native. Track your income and expenses, view monthly summaries, and export reports to PDF.
 
-    ✅ Random Forest Regression for performance prediction across multiple employees
+## Features
 
-    📈 LSTM Time-Series Forecasting for predicting future performance trends per employee
+- ✅ **Add Expenses & Income**: Easily record your financial transactions
+- ✅ **Auto-Calculate Totals**: Automatic calculation of income, expenses, and balance
+- ✅ **Monthly Summary**: View summaries for any month with easy navigation
+- ✅ **Export to PDF**: Generate and share PDF reports of your financial data
+- ✅ **Fully Offline**: All data stored locally using SQLite database
+- ✅ **Beautiful UI**: Modern, clean interface with intuitive navigation
 
-    🧪 Synthetic KPI dataset generation (simulates realistic HR data)
+## Installation
 
-    🧠 Model training and evaluation with performance metrics
+1. Install dependencies:
+```bash
+npm install
+```
 
-    📊 Optional Streamlit dashboard interface for interactive forecasting
+2. Start the Expo development server:
+```bash
+npm start
+```
 
-    💾 Model serialization using joblib
+3. Run on your device:
+   - **iOS**: Press `i` in the terminal or scan the QR code with the Expo Go app
+   - **Android**: Press `a` in the terminal or scan the QR code with the Expo Go app
+   - **Web**: Press `w` in the terminal
 
-📁 Project Files
-File	Description
-train_model.py	Trains a Random Forest model on synthetic KPI data
-app.py	Streamlit app for forecasting performance scores
-synthetic_employee_kpis.csv	Generated dataset of 100 employees and KPIs
-employee_performance_model.pkl	Trained Random Forest model file
-lstm_employee_forecast.py	LSTM-based time-series forecast for single employee
-README.md	This documentation file
-🛠️ How to Use
-1. Install Required Libraries
+## Usage
 
-pip install pandas numpy scikit-learn streamlit matplotlib tensorflow
+### Adding Transactions
 
-2. Train Random Forest Model
+1. Tap the **+** button at the bottom right
+2. Select **Income** or **Expense**
+3. Enter the amount
+4. Optionally add a description and category
+5. Set the date (defaults to today)
+6. Tap **Save**
 
-python train_model.py
+### Viewing Summary
 
-3. Launch Streamlit App (Optional)
+1. Tap the **Summary** button in the header
+2. View your monthly income, expenses, and balance
+3. Tap **Export to PDF** to generate a PDF report
 
-streamlit run app.py
+### Navigating Months
 
-4. Run LSTM Time Series Forecast
+- Use the **‹** and **›** buttons to navigate between months
+- The summary cards automatically update for the selected month
 
-python lstm_employee_forecast.py
+### Deleting Transactions
 
-📊 Example KPI Columns
+- Tap the **Delete** button on any transaction to remove it
 
-    project_delivery_score
+## Technical Details
 
-    attendance_rate
+### Dependencies
 
-    quality_score
+- **expo-sqlite**: Local SQLite database for storing transactions
+- **expo-print**: PDF generation and printing
+- **expo-file-system**: File system operations
+- **expo-sharing**: Share PDF files
+- **@react-native-async-storage/async-storage**: Additional storage utilities
 
-    teamwork_score
+### Database Schema
 
-    learning_index
+The app uses SQLite with the following schema:
 
-    performance_score (target variable)
+```sql
+CREATE TABLE transactions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  type TEXT NOT NULL,           -- 'income' or 'expense'
+  amount REAL NOT NULL,
+  description TEXT,
+  category TEXT,
+  date TEXT NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-📌 Notes
+### File Structure
 
-    Random Forest handles tabular KPI regression well for cross-sectional data.
+```
+expense/
+├── App.js          # Main application component
+├── database.js     # Database utilities and queries
+├── package.json    # Dependencies and scripts
+└── README.md       # This file
+```
 
-    LSTM is used for sequential forecasting using historical KPI patterns (e.g., monthly updates).
+## Features in Detail
 
-    The synthetic dataset can be replaced with actual HR data for deployment.
+### Auto-Calculation
 
-👨‍💻 Author: Okes Imoni
-Email: jennyimoni@gmail.com
+- **Total Income**: Sum of all income transactions for the selected month
+- **Total Expenses**: Sum of all expense transactions for the selected month
+- **Balance**: Income minus expenses (automatically calculated)
+
+### PDF Export
+
+The PDF export includes:
+- Month and year header
+- Summary section (income, expenses, balance)
+- Complete transaction list with:
+  - Date
+  - Type (Income/Expense)
+  - Description
+  - Category
+  - Amount (color-coded)
+- Generation timestamp
+
+### Offline Storage
+
+All data is stored locally on your device using SQLite. No internet connection is required, and your data remains private and secure.
+
+## Development
+
+### Running the App
+
+```bash
+# Start Expo development server
+npm start
+
+# Run on iOS simulator
+npm run ios
+
+# Run on Android emulator
+npm run android
+
+# Run on web
+npm run web
+```
+
+### Building for Production
+
+```bash
+# Build for iOS
+eas build --platform ios
+
+# Build for Android
+eas build --platform android
+```
+
+## License
+
+This project is open source and available for personal use.
+
+# kexpense
