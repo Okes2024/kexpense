@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "kexpense",
+    "slug": "kexpense",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.okesinovationapp.com",
+      "infoPlist": {}
+    },
+    "android": {
+      "package": "com.okesinovationapp.com",
+      "versionCode": 2,
+      "permissions": [],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-splash-screen"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b1f482a8-30a1-4d6b-a67c-8906bdff7167"
+      }
+    }
+  }
+}
